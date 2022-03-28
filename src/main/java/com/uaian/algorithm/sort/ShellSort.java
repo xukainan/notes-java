@@ -10,7 +10,13 @@ package com.uaian.algorithm.sort;
  *
  * O(n^1.3)到O(n^2.0)
  *
-
+ * 现在我们有一个数组，该数组有6个元素int[] arrays = {2, 5, 1, 3, 4, 6};
+ * 排序前：将该数组看成三个（arrays.length/2)数组，分别是:{2,3},{5,4},{1,6}
+ * 第一趟排序：对三个数组分别进行插入排序，因此我们三个数组得到的结果为{2,3},{4,5},{1,6}
+ * 此时数组是这样子的：{2, 4, 1, 3, 5, 6}
+ * 第二趟排序：增量减少了，上面增量是3，此时增量应该为1了，
+ * 因此把{2, 4, 1, 3, 5, 6}看成一个数组(从宏观上是有序的了)，对其进行插入排序，直至有序
+ *
  */
 public class ShellSort {
     public static void main(String[] args) {
@@ -28,10 +34,13 @@ public class ShellSort {
             for (int i = step; i < arrays.length; i++) {
                 int j = i;
                 int temp = arrays[j];
+                //j-step 同一组前面的数
                 while (j - step >= 0 && arrays[j - step] > temp) {
+                    //如果大于，则往前移动
                     arrays[j] = arrays[j -step];
                     j = j-step;
                 }
+                //前面没有大的数了，就放在这个位置
                 arrays[j] = temp;
             }
 

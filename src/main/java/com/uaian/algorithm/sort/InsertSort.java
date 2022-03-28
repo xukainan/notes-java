@@ -21,18 +21,30 @@ public class InsertSort {
     }
 
     private static void insertSortMethod(int[] arr) {
-        for (int index = 1; index < arr.length; index++) {  //循环待排序的数
-            int tmp_index = index; //排序的数交换后下标会变，所以临时变量
-            for (int sorted = index - 1; sorted >= 0 ; sorted--) { //循环和已经排序好的数组比较
-                if(arr[tmp_index] < arr[sorted]) { //如果小于则交换
-                    arr[tmp_index] ^= arr[sorted];
-                    arr[sorted] ^= arr[tmp_index];
-                    arr[tmp_index] ^= arr[sorted];
-                    tmp_index--; //交换后下标减小
-                }else {
-                    break;
-                }
+        for (int i = 1; i < arr.length; i++) {
+            int j = i;
+            int tmp = arr[i];
+            while (j-1 >= 0 && arr[j-1] > tmp) {
+                arr[j] = arr[j-1];
+                j = j-1;
             }
+            arr[j] = tmp;
         }
     }
+
+//    private static void insertSortMethod(int[] arr) {
+//        for (int index = 1; index < arr.length; index++) {  //循环待排序的数
+//            int tmp_index = index; //排序的数交换后下标会变，所以临时变量
+//            for (int sorted = index - 1; sorted >= 0 ; sorted--) { //循环和已经排序好的数组比较
+//                if(arr[tmp_index] < arr[sorted]) { //如果小于则交换
+//                    arr[tmp_index] ^= arr[sorted];
+//                    arr[sorted] ^= arr[tmp_index];
+//                    arr[tmp_index] ^= arr[sorted];
+//                    tmp_index--; //交换后下标减小
+//                }else {
+//                    break;
+//                }
+//            }
+//        }
+//    }
 }
